@@ -1,0 +1,181 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import TerminalDemo from '../components/TerminalDemo.astro';
+import RevealObserver from '../components/RevealObserver.astro';
+
+const frontmatter = {
+	title: 'nu_plugin_net',
+	description: 'Inspect the network interfaces on your host from Nushell.',
+	template: 'splash',
+};
+
+const docsBase = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const installHref = `${docsBase}guides/install/`;
+const useNetHref = `${docsBase}guides/use-net/`;
+const outputHref = `${docsBase}reference/output/`;
+const apiHref = `${docsBase}api/`;
+---
+
+<StarlightPage frontmatter={frontmatter} hasSidebar={false} headings={[]}>
+<RevealObserver />
+
+<div class="net-home">
+  <section class="net-home__hero net-reveal">
+    <div class="net-home__hero-copy">
+      <p class="net-eyebrow">Nushell plugin · structured output</p>
+      <h1>Network data for Nushell, with <em>structure.</em></h1>
+      <p class="net-lede">Inspect interfaces, addresses, and flags as native Nushell data you can immediately filter, select, flatten, and script.</p>
+      <div class="net-actions">
+        <a class="sl-link-button primary" href={installHref}>Read the guide <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="net-hero-meta" aria-label="Project metadata">
+        <span><strong>Rust</strong> plugin</span>
+        <span><strong>Nushell</strong> native</span>
+        <span><strong>MIT</strong> licensed</span>
+      </div>
+    </div>
+    <div class="net-home__hero-aside">
+      <p>Practical network insight for your shell.</p>
+      <p>One command, structured records, and a pipeline-friendly shape.</p>
+    </div>
+  </section>
+
+  <section class="net-section net-reveal" aria-labelledby="terminal-title">
+    <div class="net-section-heading">
+      <div>
+        <p class="net-eyebrow">Try it yourself</p>
+        <h2 id="terminal-title">A useful result, right away.</h2>
+      </div>
+      <p class="net-section-note">A small taste of the real plugin output.</p>
+    </div>
+    <TerminalDemo />
+  </section>
+
+  <section class="net-section net-section--schema net-reveal" aria-labelledby="schema-title">
+    <div class="net-section-heading">
+      <div>
+        <p class="net-eyebrow">Output schema</p>
+        <h2 id="schema-title">The <em>net</em> output</h2>
+      </div>
+      <p class="net-section-note">Structured. Consistent. Scriptable.</p>
+    </div>
+    <p class="net-section-intro">Every interface is returned as a record with stable top-level fields and nested address and flag details.</p>
+    <div class="net-schema-table-wrap">
+      <table class="net-schema-table">
+        <thead>
+          <tr><th>Column</th><th>Type</th><th>Description</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>name</code></td><td>string</td><td>Interface name</td><td><code>en0</code></td></tr>
+          <tr><td><code>description</code></td><td>string</td><td>System-provided interface description</td><td><code>Ethernet</code></td></tr>
+          <tr><td><code>if_index</code></td><td>int</td><td>Operating-system interface index</td><td><code>2</code></td></tr>
+          <tr><td><code>mac</code></td><td>string | nothing</td><td>Hardware address when available</td><td><code>14:7d:da:3c:1f:2b</code></td></tr>
+          <tr><td><code>ips</code></td><td>table</td><td>Addresses with type and prefix</td><td><code>192.168.1.42/24</code></td></tr>
+          <tr><td><code>flags</code></td><td>record</td><td>State and capability flags</td><td><code>is_up: true</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="net-section net-reveal" aria-labelledby="features-title">
+    <div class="net-section-heading">
+      <div>
+        <p class="net-eyebrow">Designed for pipelines</p>
+        <h2 id="features-title">Small surface. <em>Useful depth.</em></h2>
+      </div>
+    </div>
+    <div class="net-feature-grid">
+      <article class="net-feature-card">
+        <span class="net-feature-index">01</span>
+        <h3>Structured output</h3>
+        <p>Records and tables you can pass into Nushell commands without parsing text.</p>
+      </article>
+      <article class="net-feature-card">
+        <span class="net-feature-index">02</span>
+        <h3>Nested details</h3>
+        <p>Reach addresses and state flags directly with familiar Nushell paths.</p>
+      </article>
+      <article class="net-feature-card">
+        <span class="net-feature-index">03</span>
+        <h3>Platform-aware</h3>
+        <p>Interface information is gathered through the host operating system’s native network APIs.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="net-section net-install net-reveal" aria-labelledby="install-title">
+    <div class="net-section-heading">
+      <div>
+        <p class="net-eyebrow">Installation</p>
+        <h2 id="install-title">Ready in a <em>few commands.</em></h2>
+      </div>
+      <p class="net-section-note">Works with the Nushell plugin system.</p>
+    </div>
+    <div class="net-install-grid">
+      <div>
+        <p class="net-section-intro">Install the crate, register the executable, and load the command into your current Nushell session.</p>
+        <a class="net-text-link" href={installHref}>See the full installation guide <span aria-hidden="true">→</span></a>
+      </div>
+      <pre class="net-code-panel"><code>{'# Install the plugin\ncargo install nu_plugin_net --locked\n\n# Register and load it in Nushell\nplugin add ~/.cargo/bin/nu_plugin_net\nplugin use net'}</code></pre>
+    </div>
+  </section>
+
+  <section class="net-section net-reveal" aria-labelledby="examples-title">
+    <div class="net-section-heading">
+      <div>
+        <p class="net-eyebrow">Examples</p>
+        <h2 id="examples-title">Common <em>pipelines.</em></h2>
+      </div>
+      <p class="net-section-note">Real tasks. Real output.</p>
+    </div>
+    <div class="net-example-grid">
+      <article class="net-example-card">
+        <h3>List interfaces</h3>
+        <p>Show every interface and its details.</p>
+        <pre class="net-code-panel"><code>net</code></pre>
+      </article>
+      <article class="net-example-card">
+        <h3>Only active interfaces</h3>
+        <p>Keep the fields that matter for a quick status check.</p>
+        <pre class="net-code-panel"><code>net | where flags.is_up | select name if_index mac</code></pre>
+      </article>
+      <article class="net-example-card">
+        <h3>Get addresses</h3>
+        <p>Project address values from every interface.</p>
+        <pre class="net-code-panel"><code>{'net | each {|interface|\n  { name: $interface.name, addresses: ($interface.ips | get addr) }\n}'}</code></pre>
+      </article>
+      <article class="net-example-card">
+        <h3>Flatten state flags</h3>
+        <p>Bring nested booleans into a compact table.</p>
+        <pre class="net-code-panel"><code>net | flatten flags | select name if_index is_up is_loopback is_multicast</code></pre>
+      </article>
+    </div>
+  </section>
+
+  <section class="net-section net-doc-preview net-reveal" aria-labelledby="docs-title">
+    <div class="net-doc-preview__copy">
+      <p class="net-eyebrow">Documentation</p>
+      <h2 id="docs-title">Explore the <em>details.</em></h2>
+      <p>Learn the install flow, inspect the complete schema, and browse the generated Rust API reference.</p>
+    </div>
+    <nav class="net-doc-preview__links" aria-label="Documentation links">
+      <a href={installHref}><span>01</span><strong>Installation</strong><small>Get the plugin running</small><b aria-hidden="true">↗</b></a>
+      <a href={useNetHref}><span>02</span><strong>Using net</strong><small>Build useful pipelines</small><b aria-hidden="true">↗</b></a>
+      <a href={outputHref}><span>03</span><strong>Output schema</strong><small>Know every field</small><b aria-hidden="true">↗</b></a>
+      <a href={apiHref}><span>04</span><strong>Rust API</strong><small>Generated reference</small><b aria-hidden="true">↗</b></a>
+    </nav>
+  </section>
+
+  <section class="net-cta net-reveal" aria-labelledby="cta-title">
+    <p class="net-eyebrow">Open source network tooling</p>
+    <h2 id="cta-title">Make your shell <em>see more.</em></h2>
+    <p>Read the guide, try the command, and shape the result to fit your workflow.</p>
+    <a class="sl-link-button primary" href={installHref}>Get started <span aria-hidden="true">→</span></a>
+  </section>
+
+  <footer class="net-footer">
+    <span><strong>nu_plugin_net</strong> · Built with Rust and Nushell.</span>
+    <span><a href="https://github.com/averyfreeman/nu_plugin_net">View on GitHub <span aria-hidden="true">↗</span></a></span>
+  </footer>
+</div>
+</StarlightPage>

@@ -3,12 +3,12 @@ name = "nu_plugin_net"
 license = "MIT"
 authors = ["Carson <c@rson.riker.me>", "Avery Freeman <contact@averyfreeman.com>"]
 keywords = ["nushell", "network", "plugin"]
-homepage = "https://github.com/fennewald/nu_plugin_net"
-repository = "https://github.com/fennewald/nu_plugin_net"
+homepage = "https://averyfreeman.github.io/nu_plugin_net/"
+repository = "https://github.com/averyfreeman/nu_plugin_net"
 description = "A nushell plugin for enumerating network interfaces in a platform-agnostic way"
-version = "1.11.0"
+version = "1.12.0"
 edition = "2024"
-rust-version = "1.85.0"
+rust-version = "1.95.0"
 readme = "README.md"
 
 [[bin]]
@@ -17,8 +17,8 @@ name = "nu_plugin_net"
 [lib]
 
 [dependencies]
-nu-plugin = "~0.114.0"
-nu-protocol = { version = "~0.114.0", features = ["plugin"] }
+nu-plugin = "~0.115.0"
+nu-protocol = { version = "~0.115.0", features = ["plugin"] }
 pnet = "0.35.0"
 
 # The profile that 'cargo dist' will build with

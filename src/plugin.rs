@@ -1,5 +1,6 @@
 use crate::InterfacesCommand;
 
+/// The plugin entry point that registers the `net` command with Nushell.
 pub struct Plugin;
 
 impl Default for Plugin {
@@ -9,6 +10,7 @@ impl Default for Plugin {
 }
 
 impl Plugin {
+    /// Construct a plugin instance ready to be served by Nushell.
     pub fn new() -> Plugin {
         Plugin {}
     }

@@ -2,7 +2,7 @@
 
 ### A nushell plugin to list system network interfaces
 
-![NuShell v114.1 on Fedora 44 x86_64](./screenshots/nushell_114_test.png)
+![nu_plugin_net output from Nushell on Fedora](./screenshots/nushell_114_test.png)
 
 ---
 
@@ -10,22 +10,12 @@ A simple and straightforward plugin. All of the heavy lifting is done by pnet. T
 
 Format may be subject to change.
 
+Project documentation, installation guidance, output reference, and the generated Rust API are available on the [Astro Starlight documentation site](https://averyfreeman.github.io/nu_plugin_net/).
+
+[![Read the documentation](https://img.shields.io/badge/Read_the_documentation-3369ff?style=for-the-badge)](https://averyfreeman.github.io/nu_plugin_net/)
+
 > [!note]
-> This is not an upstream release, but a 3rd-party nushell 114 compatibility update.
-
-Version 2 of this plugin is actively being prepared. Some important objectives:
-
-- Automate the nushell version update process
-- Setup a website, more clear installation instructions
-- Add support for additional commands
-  - `ping`
-  - Some form of tcp SYN port-scanning
-  - Speed testing (50-50 about this one, please comment thoughts)
-  - ARP ping, listening
-  - Interface for viewing routing tables
-  - traceroute (This might be too difficult, we'll see)
-
-If you've got thoughts about the direction we should take, or are interested in helping out, please get in touch! Feel free to file an issue, or just send me an email directly.
+> This is not an upstream release, but a 3rd-party Nushell 0.115.x compatibility update.
 
 # Examples
 
@@ -84,7 +74,7 @@ cargo install nu_plugin_net   # try adding --locked if fails
 or specific version
 
 ```
-cargo install nu_plugin_net --locked --1.11.0  # for nushell 114.x
+cargo install nu_plugin_net --locked --version 1.12.0  # for Nushell 0.115.x
 ```
 
 To build from source, use:
@@ -100,9 +90,15 @@ To register the plugin for use, just run:
 
 ```
 plugin add ~/.cargo/bin/nu_plugin_net
+plugin use net
 ```
 
 # Changelog
+
+## Version 1.12.0
+
+- Bump for compatibility with `nu@0.115.x`
+- Require Rust `1.95.0`.
 
 ## Version 1.11.0
 
@@ -110,7 +106,6 @@ plugin add ~/.cargo/bin/nu_plugin_net
   - `nu-plugin` and `nu-protocol` now version `~0.114.0`
   - `edition` bump from `2021` to `2024`
   - Min `rustc` ver `1.85.0` requirement
-  - Toolchain version bumps in GH-Pages workflow
 
 ## Version 1.10.0
 
