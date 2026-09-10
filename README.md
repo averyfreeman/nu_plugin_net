@@ -15,7 +15,7 @@ Project documentation, installation guidance, output reference, and the generate
 [![Read the documentation](https://img.shields.io/badge/Read_the_documentation-3369ff?style=for-the-badge)](https://averyfreeman.github.io/nu_plugin_net/)
 
 > [!note]
-> This is not an upstream release, but a 3rd-party Nushell 0.115.x compatibility update.
+> This is not an upstream release, but a 3rd-party Nushell 0.115.1 compatibility update.
 
 # Examples
 
@@ -94,6 +94,12 @@ plugin use net
 ```
 
 # Changelog
+
+## Version 1.12.1
+
+- Refresh the maintenance and feature-assessment documentation.
+- Keep the plugin aligned with the Nushell 0.115.1 toolchain and generated
+  Rustdoc site.
 
 ## Version 1.12.0
 
